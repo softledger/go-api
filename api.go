@@ -31,6 +31,10 @@ type Client struct {
 	common service
 
 	CostCenter *CostCenterService
+	Customer   *CustomerService
+	Template   *TemplateService
+	Vendor     *VendorService
+	Warehouse  *WarehouseService
 }
 
 type QueryParams struct {
@@ -80,6 +84,10 @@ func NewClient(httpClient *http.Client) *Client {
 	//but why?
 	c.common.client = c
 	c.CostCenter = (*CostCenterService)(&c.common)
+	c.Customer = (*CustomerService)(&c.common)
+	c.Template = (*TemplateService)(&c.common)
+	c.Vendor = (*VendorService)(&c.common)
+	c.Warehouse = (*WarehouseService)(&c.common)
 
 	return c
 }
