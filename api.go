@@ -30,11 +30,22 @@ type Client struct {
 
 	common service
 
-	CostCenter *CostCenterService
-	Customer   *CustomerService
-	Template   *TemplateService
-	Vendor     *VendorService
-	Warehouse  *WarehouseService
+	Bill              *BillService
+	CashReceipt       *CashReceiptService
+	Coin              *CoinService
+	CostCenter        *CostCenterService
+	CryptoTransaction *CryptoTransactionService
+	Customer          *CustomerService
+	Invoice           *InvoiceService
+	Item              *ItemService
+	Job               *JobService
+	Journal           *JournalService
+	LedgerAccount     *LedgerAccountService
+	Location          *LocationService
+	Settings          *SettingsService
+	Template          *TemplateService
+	Vendor            *VendorService
+	Warehouse         *WarehouseService
 }
 
 type QueryParams struct {
@@ -83,8 +94,19 @@ func NewClient(httpClient *http.Client) *Client {
 	}
 	//but why?
 	c.common.client = c
+	c.Bill = (*BillService)(&c.common)
+	c.CashReceipt = (*CashReceiptService)(&c.common)
+	c.Coin = (*CoinService)(&c.common)
 	c.CostCenter = (*CostCenterService)(&c.common)
+	c.CryptoTransaction = (*CryptoTransactionService)(&c.common)
 	c.Customer = (*CustomerService)(&c.common)
+	c.Invoice = (*InvoiceService)(&c.common)
+	c.Item = (*ItemService)(&c.common)
+	c.Job = (*JobService)(&c.common)
+	c.Journal = (*JournalService)(&c.common)
+	c.LedgerAccount = (*LedgerAccountService)(&c.common)
+	c.Location = (*LocationService)(&c.common)
+	c.Settings = (*SettingsService)(&c.common)
 	c.Template = (*TemplateService)(&c.common)
 	c.Vendor = (*VendorService)(&c.common)
 	c.Warehouse = (*WarehouseService)(&c.common)
@@ -233,6 +255,8 @@ func Int(v int) *int { return &v }
 // Int64 is a helper routine that allocates a new int64 value
 // to store v and returns a pointer to it.
 func Int64(v int64) *int64 { return &v }
+
+func Float64(v float64) *float64 { return &v }
 
 // String is a helper routine that allocates a new string value
 // to store v and returns a pointer to it.

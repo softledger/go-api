@@ -21,7 +21,7 @@ type Bill struct {
 	InvoiceNumber   *string  `json:"invoiceNumber"`
 	LocationId      *int64
 	Location        *Location
-	ICLocation      *int64
+	ICLocationId    *int64
 	ICLocation      *Location
 	VendorId        *int64
 	Vendor          *Vendor
@@ -145,6 +145,60 @@ func (s *BillService) Delete(ctx context.Context, _id int64) (*Response, error) 
 	u := fmt.Sprintf("%v/%v", "bills", _id)
 
 	req, err := s.client.NewRequest("DELETE", u, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.client.Do(ctx, req, nil)
+	if err != nil {
+		return resp, err
+	}
+
+	return resp, nil
+
+}
+
+func (s *BillService) Approve(ctx context.Context, _id int64) (*Response, error) {
+
+	u := fmt.Sprintf("%v/%v", "bills/approve", _id)
+
+	req, err := s.client.NewRequest("PUT", u, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.client.Do(ctx, req, nil)
+	if err != nil {
+		return resp, err
+	}
+
+	return resp, nil
+
+}
+
+func (s *BillService) Void(ctx context.Context, _id int64) (*Response, error) {
+
+	u := fmt.Sprintf("%v/%v", "bills/void", _id)
+
+	req, err := s.client.NewRequest("PUT", u, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := s.client.Do(ctx, req, nil)
+	if err != nil {
+		return resp, err
+	}
+
+	return resp, nil
+
+}
+
+func (s *BillService) Pay(ctx context.Context, payload *interface{}) (*Response, error) {
+
+	u := fmt.Sprintf("bills/pay")
+
+	req, err := s.client.NewRequest("POST", u, payload)
 	if err != nil {
 		return nil, err
 	}
