@@ -21,15 +21,16 @@ func TestCashReceiptService_all(t *testing.T) {
             "_id": 3,
             "number": "001",
             "type": "Check",
-            "amount": "100",
-            "unused": "0",
+            "amount": 100,
+            "unused": 0,
             "description": "Office Supplies",
             "currency": "USD",
             "receiveDate": "2017-07-05T19:57:49.964Z",
+            "postingDate": "2017-04-29T00:00:00.000Z",
             "status": "created",
             "AgentId": 11,
             "LedgerAccountId": 4790,
-            "LocationId": 62,
+            "LocationId": 62
         }], "totalItems": 1}`)
 	})
 
@@ -45,7 +46,7 @@ func TestCashReceiptService_all(t *testing.T) {
 	want := []*CashReceipt{{
 		ID:              Int64(3),
 		Number:          String("001"),
-		ReceiveDate:     String("2017-05-30T00:00:00.000Z"),
+		ReceiveDate:     String("2017-07-05T19:57:49.964Z"),
 		PostingDate:     String("2017-04-29T00:00:00.000Z"),
 		Amount:          Float64(100),
 		Type:            String("Check"),
@@ -54,7 +55,7 @@ func TestCashReceiptService_all(t *testing.T) {
 		Status:          String("created"),
 		Currency:        String("USD"),
 		AgentId:         Int64(11),
-		LocationId:      Int64(61),
+		LocationId:      Int64(62),
 		LedgerAccountId: Int64(4790),
 	}}
 	if !reflect.DeepEqual(cashReceipts, want) {
@@ -73,15 +74,16 @@ func TestCashReceiptService_one(t *testing.T) {
             "_id": 3,
             "number": "001",
             "type": "Check",
-            "amount": "100",
-            "unused": "0",
+            "amount": 100,
+            "unused": 0,
             "description": "Office Supplies",
             "currency": "USD",
             "receiveDate": "2017-07-05T19:57:49.964Z",
+            "postingDate": "2017-04-29T00:00:00.000Z",
             "status": "created",
             "AgentId": 11,
             "LedgerAccountId": 4790,
-            "LocationId": 62,
+            "LocationId": 62
         }`)
 	})
 
@@ -93,7 +95,7 @@ func TestCashReceiptService_one(t *testing.T) {
 	want := &CashReceipt{
 		ID:              Int64(3),
 		Number:          String("001"),
-		ReceiveDate:     String("2017-05-30T00:00:00.000Z"),
+		ReceiveDate:     String("2017-07-05T19:57:49.964Z"),
 		PostingDate:     String("2017-04-29T00:00:00.000Z"),
 		Amount:          Float64(100),
 		Type:            String("Check"),
@@ -102,7 +104,7 @@ func TestCashReceiptService_one(t *testing.T) {
 		Status:          String("created"),
 		Currency:        String("USD"),
 		AgentId:         Int64(11),
-		LocationId:      Int64(61),
+		LocationId:      Int64(62),
 		LedgerAccountId: Int64(4790),
 	}
 	if !reflect.DeepEqual(cc, want) {
@@ -121,21 +123,22 @@ func TestCashReceiptService_create(t *testing.T) {
             "_id": 3,
             "number": "001",
             "type": "Check",
-            "amount": "100",
-            "unused": "0",
+            "amount": 100,
+            "unused": 0,
             "description": "Office Supplies",
             "currency": "USD",
             "receiveDate": "2017-07-05T19:57:49.964Z",
+            "postingDate": "2017-04-29T00:00:00.000Z",
             "status": "created",
             "AgentId": 11,
             "LedgerAccountId": 4790,
-            "LocationId": 62,
+            "LocationId": 62
         }`)
 	})
 
 	payload := &CashReceipt{
 		Number:          String("001"),
-		ReceiveDate:     String("2017-05-30T00:00:00.000Z"),
+		ReceiveDate:     String("2017-07-05T19:57:49.964Z"),
 		PostingDate:     String("2017-04-29T00:00:00.000Z"),
 		Amount:          Float64(100),
 		Type:            String("Check"),
@@ -144,7 +147,7 @@ func TestCashReceiptService_create(t *testing.T) {
 		Status:          String("created"),
 		Currency:        String("USD"),
 		AgentId:         Int64(11),
-		LocationId:      Int64(61),
+		LocationId:      Int64(62),
 		LedgerAccountId: Int64(4790),
 	}
 
@@ -156,7 +159,7 @@ func TestCashReceiptService_create(t *testing.T) {
 	want := &CashReceipt{
 		ID:              Int64(3),
 		Number:          String("001"),
-		ReceiveDate:     String("2017-05-30T00:00:00.000Z"),
+		ReceiveDate:     String("2017-07-05T19:57:49.964Z"),
 		PostingDate:     String("2017-04-29T00:00:00.000Z"),
 		Amount:          Float64(100),
 		Type:            String("Check"),
@@ -165,7 +168,7 @@ func TestCashReceiptService_create(t *testing.T) {
 		Status:          String("created"),
 		Currency:        String("USD"),
 		AgentId:         Int64(11),
-		LocationId:      Int64(61),
+		LocationId:      Int64(62),
 		LedgerAccountId: Int64(4790),
 	}
 	if !reflect.DeepEqual(cc, want) {
@@ -184,15 +187,16 @@ func TestCashReceiptService_update(t *testing.T) {
             "_id": 3,
             "number": "001",
             "type": "Check",
-            "amount": "100",
-            "unused": "0",
+            "amount": 100,
+            "unused": 0,
             "description": "Office Supplies",
             "currency": "USD",
             "receiveDate": "2017-07-05T19:57:49.964Z",
+            "postingDate": "2017-04-29T00:00:00.000Z",
             "status": "created",
             "AgentId": 11,
             "LedgerAccountId": 4790,
-            "LocationId": 62,
+            "LocationId": 62
         }`)
 	})
 
@@ -208,7 +212,7 @@ func TestCashReceiptService_update(t *testing.T) {
 	want := &CashReceipt{
 		ID:              Int64(3),
 		Number:          String("001"),
-		ReceiveDate:     String("2017-05-30T00:00:00.000Z"),
+		ReceiveDate:     String("2017-07-05T19:57:49.964Z"),
 		PostingDate:     String("2017-04-29T00:00:00.000Z"),
 		Amount:          Float64(100),
 		Type:            String("Check"),
@@ -217,7 +221,7 @@ func TestCashReceiptService_update(t *testing.T) {
 		Status:          String("created"),
 		Currency:        String("USD"),
 		AgentId:         Int64(11),
-		LocationId:      Int64(61),
+		LocationId:      Int64(62),
 		LedgerAccountId: Int64(4790),
 	}
 	if !reflect.DeepEqual(cc, want) {

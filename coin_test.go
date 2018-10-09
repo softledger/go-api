@@ -20,7 +20,7 @@ func TestCoinService_all(t *testing.T) {
 		fmt.Fprint(w, `{"data":[{
             "_id": "3fc2dda9-b497-4764-9f92-2bcb531ad1dc",
             "name": "0x",
-            "symbol": "ZRX",
+            "symbol": "ZRX"
         }], "totalItems": 1}`)
 	})
 
@@ -53,7 +53,7 @@ func TestCoinService_one(t *testing.T) {
 		fmt.Fprint(w, `{
             "_id": "3fc2dda9-b497-4764-9f92-2bcb531ad1dc",
             "name": "0x",
-            "symbol": "ZRX",
+            "symbol": "ZRX"
         }`)
 	})
 
@@ -82,7 +82,7 @@ func TestCoinService_create(t *testing.T) {
 		fmt.Fprint(w, `{
             "_id": "3fc2dda9-b497-4764-9f92-2bcb531ad1dc",
             "name": "0x",
-            "symbol": "ZRX",
+            "symbol": "ZRX"
         }`)
 	})
 
