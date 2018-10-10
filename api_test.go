@@ -23,6 +23,7 @@ func setup() (client *Client, mux *http.ServeMux, serverURL string, teardown fun
 	client = NewClient(nil)
 	url, _ := url.Parse(server.URL + "/")
 	client.BaseURL = url
+	client.SvcURL = url
 
 	return client, mux, server.URL, server.Close
 

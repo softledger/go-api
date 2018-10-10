@@ -18,6 +18,7 @@ import (
 const (
 	//automatically adds api/ on the end
 	defaultBaseURL = "https://api.softledger.com/"
+	defaultSvcURL  = "https://services.softledger.com/"
 	userAgent      = "go-softledger"
 )
 
@@ -25,6 +26,8 @@ type Client struct {
 	client *http.Client //HTTP client to talk to the api
 
 	BaseURL *url.URL
+
+	SvcURL *url.URL
 
 	UserAgent string
 
@@ -43,6 +46,7 @@ type Client struct {
 	LedgerAccount     *LedgerAccountService
 	Location          *LocationService
 	Settings          *SettingsService
+	Status            *StatusService
 	Template          *TemplateService
 	Vendor            *VendorService
 	Warehouse         *WarehouseService
@@ -86,13 +90,15 @@ func NewClient(httpClient *http.Client) *Client {
 		httpClient = http.DefaultClient
 	}
 	baseURL, _ := url.Parse(defaultBaseURL)
+	svcURL, _ := url.Parse(defaultSvcURL)
 
 	c := &Client{
 		client:    httpClient,
 		BaseURL:   baseURL,
+		SvcURL:    svcURL,
 		UserAgent: userAgent,
 	}
-	//but why?
+
 	c.common.client = c
 	c.Bill = (*BillService)(&c.common)
 	c.CashReceipt = (*CashReceiptService)(&c.common)
@@ -107,11 +113,46 @@ func NewClient(httpClient *http.Client) *Client {
 	c.LedgerAccount = (*LedgerAccountService)(&c.common)
 	c.Location = (*LocationService)(&c.common)
 	c.Settings = (*SettingsService)(&c.common)
+	c.Status = (*StatusService)(&c.common)
 	c.Template = (*TemplateService)(&c.common)
 	c.Vendor = (*VendorService)(&c.common)
 	c.Warehouse = (*WarehouseService)(&c.common)
 
 	return c
+}
+
+func (c *Client) NewSvcRequest(method, urlStr string, body interface{}) (*http.Request, error) {
+	if !strings.HasSuffix(c.SvcURL.Path, "/") {
+		return nil, fmt.Errorf("SvcURL must have a trailing slash, but %q does not", c.SvcURL)
+	}
+	u, err := c.SvcURL.Parse(urlStr)
+	if err != nil {
+		return nil, err
+	}
+
+	var buf io.ReadWriter
+	if body != nil {
+		buf = new(bytes.Buffer)
+		enc := json.NewEncoder(buf)
+		enc.SetEscapeHTML(false)
+		err := enc.Encode(body)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	req, err := http.NewRequest(method, u.String(), buf)
+	if err != nil {
+		return nil, err
+	}
+
+	if body != nil {
+		req.Header.Set("Content-Type", "application/json")
+	}
+	if c.UserAgent != "" {
+		req.Header.Set("User-Agent", c.UserAgent)
+	}
+	return req, nil
 }
 
 func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
