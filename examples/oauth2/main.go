@@ -8,15 +8,21 @@ import (
 	"net/url"
 )
 
+const (
+	CLIENT_ID     = "client_id"
+	CLIENT_SECRET = "client_secret"
+	TENANTID      = "tenantId"
+)
+
 func main() {
 
 	config := clientcredentials.Config{
-		ClientID:     "Ng5ho5FmupnFlpeZ0HnZukMPBDQxO0HK",
-		ClientSecret: "R5FBmB91XgYvAGeS39w3nPhCoNCGUqRSLt3ri8IyCaxHjMKflOrFNvIPkp7MuK9c",
+		ClientID:     CLIENT_ID,
+		ClientSecret: CLIENT_SECRET,
 		TokenURL:     "https://softledger.auth0.com/oauth/token",
 		EndpointParams: url.Values{
 			"audience":   {"https://sl-dev.softledger.com/api"},
-			"tenantUUID": {"71618775-bc61-41c7-ad0b-0c19a53fa3c4"},
+			"tenantUUID": {TENANTID},
 		},
 	}
 
