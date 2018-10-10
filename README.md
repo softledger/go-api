@@ -17,7 +17,7 @@ Endpoints not implemented:
 
 Example uses with oauth2
 
-```
+```go
 package main
 
 import (
