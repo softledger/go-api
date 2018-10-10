@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/softledger/go-api/softledger"
+	"github.com/softledger/go-api/softledger-api"
 	"golang.org/x/oauth2/clientcredentials"
 	"net/url"
 )
@@ -16,14 +16,21 @@ func main() {
 		TokenURL:     "https://softledger.auth0.com/oauth/token",
 		EndpointParams: url.Values{
 			"audience":   {"https://sl-dev.softledger.com/api"},
-			"tenantUUID": {"6f825930-509e-496c-8778-54b1eeed4033"},
+			"tenantUUID": {"71618775-bc61-41c7-ad0b-0c19a53fa3c4"},
 		},
 	}
 
-	client := softledger.NewClient(config.Client)
 	ctx := context.Background()
 
-	accounts, totalItems, err := client.LedgerAccounts.All(ctx)
+	client := softledger.NewClient(config.Client(ctx))
+	client.BaseURL, _ = url.Parse("https://dev-api.softledger.com/")
+
+	//fmt.Println("client", client)
+
+	_, totalItems, _, err := client.LedgerAccount.All(ctx, nil)
+	if err != nil {
+		fmt.Println("err", err)
+	}
 
 	fmt.Println("totalItems", totalItems)
 

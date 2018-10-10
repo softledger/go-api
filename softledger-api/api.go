@@ -159,7 +159,7 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	if !strings.HasSuffix(c.BaseURL.Path, "/") {
 		return nil, fmt.Errorf("BaseURL must have a trailing slash, but %q does not", c.BaseURL)
 	}
-	u, err := c.BaseURL.Parse(urlStr)
+	u, err := c.BaseURL.Parse("api" + urlStr)
 	if err != nil {
 		return nil, err
 	}
@@ -186,6 +186,7 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	if c.UserAgent != "" {
 		req.Header.Set("User-Agent", c.UserAgent)
 	}
+
 	return req, nil
 }
 
