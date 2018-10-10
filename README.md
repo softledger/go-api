@@ -5,7 +5,6 @@ This is still very much an alpha pkg.
 
 Endpoints not implemented:
 - Kit
-- Location
 - PurchaseOrders
 - Transactions
 - SalesOrders
