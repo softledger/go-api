@@ -8,9 +8,9 @@ import (
 type StatusService service
 
 type Status struct {
-	Type   *string `json:"type"`
-	Status *string `json:"status"`
-	Data   *StatusData
+	Type   *string     `json:"type"`
+	Status *string     `json:"status"`
+	Data   *StatusData `json:"data"`
 }
 
 type StatusData struct {

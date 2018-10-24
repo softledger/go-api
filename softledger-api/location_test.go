@@ -17,21 +17,17 @@ func TestLocationService_all(t *testing.T) {
 	mux.HandleFunc("/locations", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "GET")
 
-		fmt.Fprint(w, `{"data":[{
+		fmt.Fprint(w, `[{
 			"_id":1,
 			"name":"1",
 			"id":"one",
 			"description": "1"
-		}], "totalItems": 1}`)
+		}]`)
 	})
 
-	ccs, totalItems, _, err := client.Location.All(context.Background(), nil)
+	ccs, _, err := client.Location.All(context.Background(), nil)
 	if err != nil {
 		t.Errorf("Location.All returned error: %v", err)
-	}
-
-	if totalItems != 1 {
-		t.Errorf("Wrong description of locations, want %v, got %v", 1, totalItems)
 	}
 
 	want := []*Location{{

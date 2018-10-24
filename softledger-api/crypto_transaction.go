@@ -3,28 +3,34 @@ package softledger
 import (
 	"context"
 	"fmt"
+	"time"
 )
 
 type CryptoTransactionService service
 
 type CryptoTransaction struct {
-	ID     *string `json:"_id"`
-	Date   *string `json:"date"`
-	Type   *string `json:"type"`
-	Locked *bool   `json:"locked"`
-	Notes  *string `json:"notes"`
+	ID       *int64     `json:"_id"`
+	Date     *time.Time `json:"date"`
+	Type     *string    `json:"type"`
+	Locked   *bool      `json:"locked"`
+	Notes    *string    `json:"notes"`
+	Currency *string    `json:"currency"`
 
 	RQty *float64 `json:"rQty"`
 	SQty *float64 `json:"sQty"`
 	FQty *float64 `json:"fQty"`
 
-	RCoinId *int64 `json:"rCoinId"`
-	SCoinId *int64 `json:"sCoinId"`
-	FCoinId *int64 `json:"fCoinId"`
+	RCoinId *string `json:"rCoinId"`
+	SCoinId *string `json:"sCoinId"`
+	FCoinId *string `json:"fCoinId"`
 
-	RWalletId *int64 `json:"rWalletId"`
-	SWalletId *int64 `json:"sWalletId"`
-	FWalletId *int64 `json:"fWalletId"`
+	FCoin *Coin `json:"fCoin"`
+	SCoin *Coin `json:"sCoin"`
+	RCoin *Coin `json:"rCoin"`
+
+	RWalletId *string `json:"rWalletId"`
+	SWalletId *string `json:"sWalletId"`
+	FWalletId *string `json:"fWalletId"`
 
 	RPrice *float64 `json:"rPrice"`
 	SPrice *float64 `json:"sPrice"`
@@ -33,11 +39,29 @@ type CryptoTransaction struct {
 	SCostBasis *float64 `json:"sCostBasis"`
 	FCostBasis *float64 `json:"fCostBasis"`
 
-	SCostLayers *interface{} `json:"sCostLayers"`
-	FCostLayers *interface{} `json:"fCostLayers"`
+	SCostLayers []*CryptoTransactionCostLayer `json:"sCostLayers"`
+	FCostLayers []*CryptoTransactionCostLayer `json:"fCostLayers"`
 
 	LedgerAccount *LedgerAccount
 	Customer      *Customer
+	JournalId     *string
+
+	//not settable in create/update
+	Error        *CryptoTransactionError `json:"error"`
+	QtyPicked    *float64                `json:"qtyPicked"`
+	CurrencyRate *float64                `json:"currencyRate"`
+}
+
+type CryptoTransactionError struct {
+	Type *string `json:"type"`
+	Msg  *string `json:"msg"`
+}
+
+type CryptoTransactionCostLayer struct {
+	ID        *int64     `json:"_id"`
+	Date      *time.Time `json:"date"`
+	CostBasis *float64   `json:"costBasis"`
+	QtyPicked *string    `json:"qtyPicked"`
 }
 
 type ctResponse struct {

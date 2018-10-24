@@ -3,48 +3,51 @@ package softledger
 import (
 	"context"
 	"fmt"
+	"time"
 )
 
 type JournalService service
 
 type Journal struct {
-	ID           *int64  `json:"_id"`
-	Number       *string `json:"number"`
-	Status       *string `json:"status"`
-	EntryType    *string `json:"entryType"`
-	SourceLedger *string `json:"sourceLedger"`
-	Reference    *string `json:"reference"`
-	Transactions *Transactions
+	ID           *int64  `json:"_id,omitempty"`
+	Number       *int64  `json:"number,omitempty"`
+	Status       *string `json:"status,omitempty"`
+	EntryType    *string `json:"entryType,omitempty"`
+	SourceLedger *string `json:"sourceLedger,omitempty"`
+	Reference    *string `json:"reference,omitempty"`
+	Transactions []*Transaction
 }
 
-type Transactions []*Transaction
+//type Transactions []*Transaction
 
 type Transaction struct {
-	TransactionDate *string  `json:"transactionDate"`
-	PostedDate      *string  `json:"postedDate"`
-	Debit           *float64 `json:"debit"`
-	Credit          *float64 `json:"credit"`
+	TransactionDate *time.Time `json:"transactionDate,omitempty"`
+	PostedDate      *time.Time `json:"postedDate,omitempty"`
+	Debit           *string    `json:"debit,omitempty"`
+	Credit          *string    `json:"credit,omitempty"`
+	Description     *string    `json:"description,omitempty"`
+	Currency        *string    `json:"currency,omitempty"`
 
-	CostCenterId    *int64
-	CostCenter      *CostCenter
-	LedgerAccountId *int64
-	LedgerAccount   *LedgerAccount
-	JobId           *int64
-	Job             *Job
-	LocationId      *int64
-	Location        *Location
-	ICLocationId    *int64
-	ICLocation      *Location
-	InvoiceId       *int64
-	Invoice         *Invoice
-	BillId          *int64
-	Bill            *Bill
-	AgentId         *int64
-	Agent           *Customer
-	VendorId        *int64
-	Vendor          *Vendor
-	CashReceiptId   *int64
-	CashReceipt     *CashReceipt
+	CostCenterId    *int64         `json:",omitempty"`
+	CostCenter      *CostCenter    `json:",omitempty"`
+	LedgerAccountId *int64         `json:",omitempty"`
+	LedgerAccount   *LedgerAccount `json:",omitempty"`
+	JobId           *int64         `json:",omitempty"`
+	Job             *Job           `json:",omitempty"`
+	LocationId      *int64         `json:",omitempty"`
+	Location        *Location      `json:",omitempty"`
+	ICLocationId    *int64         `json:",omitempty"`
+	ICLocation      *Location      `json:",omitempty"`
+	InvoiceId       *int64         `json:",omitempty"`
+	Invoice         *Invoice       `json:",omitempty"`
+	BillId          *int64         `json:",omitempty"`
+	Bill            *Bill          `json:",omitempty"`
+	AgentId         *int64         `json:",omitempty"`
+	Agent           *Customer      `json:",omitempty"`
+	VendorId        *int64         `json:",omitempty"`
+	Vendor          *Vendor        `json:",omitempty"`
+	CashReceiptId   *int64         `json:",omitempty"`
+	CashReceipt     *CashReceipt   `json:",omitempty"`
 }
 
 type journalResponse struct {
