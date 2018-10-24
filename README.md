@@ -10,7 +10,6 @@ Endpoints not implemented:
 - SalesOrders
 - Stock
 - Vendor
-- Wallet
 - Warehouse
 
 
