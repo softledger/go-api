@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"reflect"
+	"time"
 	//"strings"
 	"testing"
 )
@@ -30,7 +31,7 @@ func TestCryptoTransactionService_all(t *testing.T) {
 	}
 
 	want := []*CryptoTransaction{{
-		ID:     String("1"),
+		ID:     Int64(1),
 		RQty:   Float64(1),
 		RPrice: Float64(10),
 	}}
@@ -56,7 +57,7 @@ func TestCryptoTransactionService_one(t *testing.T) {
 	}
 
 	want := &CryptoTransaction{
-		ID:     String("1"),
+		ID:     Int64(1),
 		RQty:   Float64(1),
 		RPrice: Float64(10),
 	}
@@ -77,7 +78,7 @@ func TestCryptoTransactionService_create(t *testing.T) {
 	})
 
 	payload := &CryptoTransaction{
-		ID:     String("1"),
+		ID:     Int64(1),
 		RQty:   Float64(1),
 		RPrice: Float64(10),
 	}
@@ -88,7 +89,7 @@ func TestCryptoTransactionService_create(t *testing.T) {
 	}
 
 	want := &CryptoTransaction{
-		ID:     String("1"),
+		ID:     Int64(1),
 		RQty:   Float64(1),
 		RPrice: Float64(10),
 	}
@@ -117,7 +118,7 @@ func TestCryptoTransactionService_update(t *testing.T) {
 	}
 
 	want := &CryptoTransaction{
-		ID:     String("1"),
+		ID:     Int64(1),
 		RQty:   Float64(1),
 		RPrice: Float64(10),
 	}
@@ -148,8 +149,10 @@ func TestCryptoTransactionService_void(t *testing.T) {
 		testMethod(t, r, "PUT")
 	})
 
+	d := time.Now()
+
 	_, err := client.CryptoTransaction.Lock(context.Background(), &CryptoTransaction{
-		Date: String("herro"),
+		Date: &d,
 	})
 	if err != nil {
 		t.Errorf("CryptoTransaction.Delete returned error: %v", err)

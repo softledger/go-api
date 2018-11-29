@@ -17,7 +17,7 @@ func TestWalletService_all(t *testing.T) {
 	mux.HandleFunc("/wallets", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "GET")
 
-		fmt.Fprint(w, `{"data":[{"_id":1,"name":"one"}], "totalItems": 1}`)
+		fmt.Fprint(w, `{"data":[{"_id":"1","name":"one"}], "totalItems": 1}`)
 	})
 
 	ccs, totalItems, _, err := client.Wallet.All(context.Background(), nil)
@@ -30,7 +30,7 @@ func TestWalletService_all(t *testing.T) {
 	}
 
 	want := []*Wallet{{
-		ID:   Int64(1),
+		ID:   String("1"),
 		Name: String("one"),
 	}}
 	if !reflect.DeepEqual(ccs, want) {
@@ -46,7 +46,7 @@ func TestWalletService_one(t *testing.T) {
 	mux.HandleFunc("/wallets/1", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "GET")
 
-		fmt.Fprint(w, `{"_id":1,"name":"one"}`)
+		fmt.Fprint(w, `{"_id":"1","name":"one"}`)
 	})
 
 	cc, _, err := client.Wallet.One(context.Background(), 1)
@@ -55,7 +55,7 @@ func TestWalletService_one(t *testing.T) {
 	}
 
 	want := &Wallet{
-		ID:   Int64(1),
+		ID:   String("1"),
 		Name: String("one"),
 	}
 	if !reflect.DeepEqual(cc, want) {
@@ -71,7 +71,7 @@ func TestWalletService_create(t *testing.T) {
 	mux.HandleFunc("/wallets", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "POST")
 
-		fmt.Fprint(w, `{"_id":1,"name":"one"}`)
+		fmt.Fprint(w, `{"_id":"1","name":"one"}`)
 	})
 
 	payload := &Wallet{
@@ -84,7 +84,7 @@ func TestWalletService_create(t *testing.T) {
 	}
 
 	want := &Wallet{
-		ID:   Int64(1),
+		ID:   String("1"),
 		Name: String("one"),
 	}
 	if !reflect.DeepEqual(cc, want) {
@@ -99,7 +99,7 @@ func TestWalletService_update(t *testing.T) {
 	mux.HandleFunc("/wallets/1", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "PUT")
 
-		fmt.Fprint(w, `{"_id":1,"name":"two"}`)
+		fmt.Fprint(w, `{"_id":"1","name":"two"}`)
 	})
 
 	payload := &Wallet{
@@ -112,7 +112,7 @@ func TestWalletService_update(t *testing.T) {
 	}
 
 	want := &Wallet{
-		ID:   Int64(1),
+		ID:   String("1"),
 		Name: String("two"),
 	}
 	if !reflect.DeepEqual(cc, want) {

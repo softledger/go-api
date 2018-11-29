@@ -1,4 +1,4 @@
-package softledger
+package sl
 
 import (
 	"bytes"
@@ -38,6 +38,7 @@ type Client struct {
 	Coin              *CoinService
 	CostCenter        *CostCenterService
 	CryptoTransaction *CryptoTransactionService
+	Currency          *CurrencyService
 	Customer          *CustomerService
 	Invoice           *InvoiceService
 	Item              *ItemService
@@ -106,6 +107,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.Coin = (*CoinService)(&c.common)
 	c.CostCenter = (*CostCenterService)(&c.common)
 	c.CryptoTransaction = (*CryptoTransactionService)(&c.common)
+	c.Currency = (*CurrencyService)(&c.common)
 	c.Customer = (*CustomerService)(&c.common)
 	c.Invoice = (*InvoiceService)(&c.common)
 	c.Item = (*ItemService)(&c.common)

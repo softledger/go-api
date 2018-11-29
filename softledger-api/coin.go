@@ -28,7 +28,7 @@ func (c Coin) String() string {
 
 func (s *CoinService) All(ctx context.Context, qry *QueryParams) ([]*Coin, int, *Response, error) {
 
-	u, err := addParams("crypto/coins", qry)
+	u, err := addParams("/crypto/coins", qry)
 
 	if err != nil {
 		return nil, 0, nil, err
@@ -50,7 +50,7 @@ func (s *CoinService) All(ctx context.Context, qry *QueryParams) ([]*Coin, int, 
 
 func (s *CoinService) One(ctx context.Context, _id int64) (*Coin, *Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "crypto/coins", _id)
+	u := fmt.Sprintf("%v/%v", "/crypto/coins", _id)
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
@@ -68,7 +68,7 @@ func (s *CoinService) One(ctx context.Context, _id int64) (*Coin, *Response, err
 
 func (s *CoinService) Create(ctx context.Context, payload *Coin) (*Coin, *Response, error) {
 
-	u := fmt.Sprintf("crypto/coins")
+	u := fmt.Sprintf("/crypto/coins")
 
 	req, err := s.client.NewRequest("POST", u, payload)
 	if err != nil {
@@ -87,7 +87,7 @@ func (s *CoinService) Create(ctx context.Context, payload *Coin) (*Coin, *Respon
 
 func (s *CoinService) Hide(ctx context.Context, _id int64) (*Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "crypto/coins", _id)
+	u := fmt.Sprintf("%v/%v", "/crypto/coins", _id)
 
 	req, err := s.client.NewRequest("DELETE", u, nil)
 	if err != nil {

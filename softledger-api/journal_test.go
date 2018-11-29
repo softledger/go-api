@@ -20,7 +20,7 @@ func TestJournalService_all(t *testing.T) {
 		fmt.Fprint(w, `{"data":[{
 			"_id":1,
 			"entryType":"1",
-			"number":"one",
+			"number":1,
 			"sourceLedger": "1"
 		}], "totalItems": 1}`)
 	})
@@ -37,7 +37,7 @@ func TestJournalService_all(t *testing.T) {
 	want := []*Journal{{
 		ID:           Int64(1),
 		EntryType:    String("1"),
-		Number:       String("one"),
+		Number:       Int64(1),
 		SourceLedger: String("1"),
 	}}
 	if !reflect.DeepEqual(ccs, want) {
@@ -56,7 +56,7 @@ func TestJournalService_one(t *testing.T) {
 		fmt.Fprint(w, `{
 			"_id":1,
 			"entryType":"1",
-			"number":"one",
+			"number": 1,
 			"sourceLedger": "1"
 		}`)
 	})
@@ -69,7 +69,7 @@ func TestJournalService_one(t *testing.T) {
 	want := &Journal{
 		ID:           Int64(1),
 		EntryType:    String("1"),
-		Number:       String("one"),
+		Number:       Int64(1),
 		SourceLedger: String("1"),
 	}
 	if !reflect.DeepEqual(cc, want) {
@@ -88,14 +88,14 @@ func TestJournalService_create(t *testing.T) {
 		fmt.Fprint(w, `{
 			"_id":1,
 			"entryType":"1",
-			"number":"one",
+			"number": 1,
 			"sourceLedger": "1"
 		}`)
 	})
 
 	payload := &Journal{
 		EntryType: String("1"),
-		Number:    String("one"),
+		Number:    Int64(1),
 	}
 
 	cc, _, err := client.Journal.Create(context.Background(), payload)
@@ -106,7 +106,7 @@ func TestJournalService_create(t *testing.T) {
 	want := &Journal{
 		ID:           Int64(1),
 		EntryType:    String("1"),
-		Number:       String("one"),
+		Number:       Int64(1),
 		SourceLedger: String("1"),
 	}
 	if !reflect.DeepEqual(cc, want) {
@@ -124,7 +124,7 @@ func TestJournalService_update(t *testing.T) {
 		fmt.Fprint(w, `{
 			"_id":1,
 			"entryType":"1",
-			"number":"one",
+			"number": 1,
 			"sourceLedger": "1"
 		}`)
 	})
@@ -141,7 +141,7 @@ func TestJournalService_update(t *testing.T) {
 	want := &Journal{
 		ID:           Int64(1),
 		EntryType:    String("1"),
-		Number:       String("one"),
+		Number:       Int64(1),
 		SourceLedger: String("1"),
 	}
 	if !reflect.DeepEqual(cc, want) {

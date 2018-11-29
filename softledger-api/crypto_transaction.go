@@ -9,59 +9,61 @@ import (
 type CryptoTransactionService service
 
 type CryptoTransaction struct {
-	ID       *int64     `json:"_id"`
-	Date     *time.Time `json:"date"`
-	Type     *string    `json:"type"`
-	Locked   *bool      `json:"locked"`
-	Notes    *string    `json:"notes"`
-	Currency *string    `json:"currency"`
+	ID             *int64     `json:"_id,omitempty"`
+	Date           *time.Time `json:"date,omitempty"`
+	Type           *string    `json:"type,omitempty"`
+	Locked         *bool      `json:"locked,omitempty"`
+	Notes          *string    `json:"notes,omitempty"`
+	Currency       *string    `json:"currency,omitempty"`
+	ExternalId     *string    `json:"externalId,omitempty"`
+	ExternalSource *string    `json:"externalSource,omitempty"`
 
-	RQty *float64 `json:"rQty"`
-	SQty *float64 `json:"sQty"`
-	FQty *float64 `json:"fQty"`
+	RQty *string `json:"rQty,omitempty"`
+	SQty *string `json:"sQty,omitempty"`
+	FQty *string `json:"fQty,omitempty"`
 
-	RCoinId *string `json:"rCoinId"`
-	SCoinId *string `json:"sCoinId"`
-	FCoinId *string `json:"fCoinId"`
+	RCoinId *string `json:"rCoinId,omitempty"`
+	SCoinId *string `json:"sCoinId,omitempty"`
+	FCoinId *string `json:"fCoinId,omitempty"`
 
-	FCoin *Coin `json:"fCoin"`
-	SCoin *Coin `json:"sCoin"`
-	RCoin *Coin `json:"rCoin"`
+	FCoin *Coin `json:"fCoin,omitempty"`
+	SCoin *Coin `json:"sCoin,omitempty"`
+	RCoin *Coin `json:"rCoin,omitempty"`
 
-	RWalletId *string `json:"rWalletId"`
-	SWalletId *string `json:"sWalletId"`
-	FWalletId *string `json:"fWalletId"`
+	RWalletId *string `json:"rWalletId,omitempty"`
+	SWalletId *string `json:"sWalletId,omitempty"`
+	FWalletId *string `json:"fWalletId,omitempty"`
 
-	RPrice *float64 `json:"rPrice"`
-	SPrice *float64 `json:"sPrice"`
-	FPrice *float64 `json:"fPrice"`
+	RPrice *string `json:"rPrice,omitempty"`
+	SPrice *string `json:"sPrice,omitempty"`
+	FPrice *string `json:"fPrice,omitempty"`
 
-	SCostBasis *float64 `json:"sCostBasis"`
-	FCostBasis *float64 `json:"fCostBasis"`
+	SCostBasis *string `json:"sCostBasis,omitempty"`
+	FCostBasis *string `json:"fCostBasis,omitempty"`
 
-	SCostLayers []*CryptoTransactionCostLayer `json:"sCostLayers"`
-	FCostLayers []*CryptoTransactionCostLayer `json:"fCostLayers"`
+	SCostLayers []*CryptoTransactionCostLayer `json:"sCostLayers,omitempty"`
+	FCostLayers []*CryptoTransactionCostLayer `json:"fCostLayers,omitempty"`
 
-	LedgerAccount *LedgerAccount
-	Customer      *Customer
-	JournalId     *string
+	LedgerAccountId *int64  `json:"LedgerAccountId,omitempty"`
+	CustomerId      *int64  `json:"CustomerId,omitempty"`
+	JournalId       *string `json:"JournalId,omitempty"`
 
 	//not settable in create/update
-	Error        *CryptoTransactionError `json:"error"`
-	QtyPicked    *float64                `json:"qtyPicked"`
-	CurrencyRate *float64                `json:"currencyRate"`
+	Error        *CryptoTransactionError `json:"error,omitempty"`
+	QtyPicked    *string                 `json:"qtyPicked,omitempty"`
+	CurrencyRate *string                 `json:"currencyRate,omitempty"`
 }
 
 type CryptoTransactionError struct {
-	Type *string `json:"type"`
-	Msg  *string `json:"msg"`
+	Type *string `json:"type,omitempty"`
+	Msg  *string `json:"msg,omitempty"`
 }
 
 type CryptoTransactionCostLayer struct {
-	ID        *int64     `json:"_id"`
-	Date      *time.Time `json:"date"`
-	CostBasis *float64   `json:"costBasis"`
-	QtyPicked *string    `json:"qtyPicked"`
+	ID        *int64     `json:"_id,omitempty"`
+	Date      *time.Time `json:"date,omitempty"`
+	CostBasis *string    `json:"costBasis,omitempty"`
+	QtyPicked *string    `json:"qtyPicked,omitempty"`
 }
 
 type ctResponse struct {
