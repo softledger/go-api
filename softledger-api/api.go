@@ -1,4 +1,4 @@
-package sl
+package softledger
 
 import (
 	"bytes"
