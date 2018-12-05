@@ -8,13 +8,13 @@ import (
 type CoinService service
 
 type Coin struct {
-	ID                *string `json:"_id"`
-	Name              *string `json:"name"`
-	Symbol            *string `json"symbol"`
-	AssetAccount      *LedgerAccount
-	FeeAccount        *LedgerAccount
-	LTGainLossAccount *LedgerAccount
-	STGainLossAccount *LedgerAccount
+	ID                *string        `json:"_id,omitempty"`
+	Name              *string        `json:"name,omitempty"`
+	Symbol            *string        `json:"symbol,omitempty"`
+	AssetAccount      *LedgerAccount `json:"AssetAccount,omitempty"`
+	FeeAccount        *LedgerAccount `json:"FeeAccount,omitempty"`
+	LTGainLossAccount *LedgerAccount `json:"LTGainLossAccount,omitempty"`
+	STGainLossAccount *LedgerAccount `json:"STGainLossAccount,omitempty"`
 }
 
 type coinResponse struct {
