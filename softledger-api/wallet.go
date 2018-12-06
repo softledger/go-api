@@ -31,7 +31,7 @@ func (c Wallet) String() string {
 
 func (s *WalletService) All(ctx context.Context, qry *QueryParams) ([]*Wallet, int, *Response, error) {
 
-	u, err := addParams("wallets", qry)
+	u, err := addParams("/crypto/wallets", qry)
 
 	if err != nil {
 		return nil, 0, nil, err
@@ -54,7 +54,7 @@ func (s *WalletService) All(ctx context.Context, qry *QueryParams) ([]*Wallet, i
 
 func (s *WalletService) One(ctx context.Context, _id *string) (*Wallet, *Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "/wallets", *_id)
+	u := fmt.Sprintf("%v/%v", "/crypto/wallets", *_id)
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
@@ -72,7 +72,7 @@ func (s *WalletService) One(ctx context.Context, _id *string) (*Wallet, *Respons
 
 func (s *WalletService) Create(ctx context.Context, payload *Wallet) (*Wallet, *Response, error) {
 
-	u := fmt.Sprintf("wallets")
+	u := fmt.Sprintf("/crypto/wallets")
 
 	req, err := s.client.NewRequest("POST", u, payload)
 	if err != nil {
@@ -91,7 +91,7 @@ func (s *WalletService) Create(ctx context.Context, payload *Wallet) (*Wallet, *
 
 func (s *WalletService) Update(ctx context.Context, _id int64, payload *Wallet) (*Wallet, *Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "wallets", _id)
+	u := fmt.Sprintf("%v/%v", "/crypto/wallets", _id)
 
 	req, err := s.client.NewRequest("PUT", u, payload)
 	if err != nil {
@@ -110,7 +110,7 @@ func (s *WalletService) Update(ctx context.Context, _id int64, payload *Wallet) 
 
 func (s *WalletService) Delete(ctx context.Context, _id int64) (*Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "wallets", _id)
+	u := fmt.Sprintf("%v/%v", "/crypto/wallets", _id)
 
 	req, err := s.client.NewRequest("DELETE", u, nil)
 	if err != nil {
