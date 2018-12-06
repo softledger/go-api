@@ -8,11 +8,16 @@ import (
 type WalletService service
 
 type Wallet struct {
-	ID          *string `json:"_id"`
-	Name        *string `json:"name"`
-	Description *string `json:"description"`
-	Address     *string `json:"address"`
-	Exchange    *string `json:"exchange"`
+	ID                  *string        `json:"_id,omitempty"`
+	Name                *string        `json:"name,omitempty"`
+	Description         *string        `json:"description,omitempty"`
+	Address             *string        `json:"address,omitempty"`
+	AddressTag          *string        `json:addressTag,omitempty"`
+	Exchange            *string        `json:"exchange,omitempty"`
+	DepositAccountId    *int64         `json:"DepositAccountId,omitempty"`
+	WithdrawalAccountId *int64         `json:"WithdrawalAccountId,omitempty"`
+	DepositAccount      *LedgerAccount `json:"DepositAccount,omitempty"`
+	WithdrawalAccount   *LedgerAccount `json:"WithdrawalAccount,omitempty"`
 }
 
 type walletResponse struct {
