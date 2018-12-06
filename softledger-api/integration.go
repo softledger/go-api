@@ -53,7 +53,7 @@ func (s *IntegrationService) All(ctx context.Context) ([]*Integration, *Response
 
 func (s *IntegrationService) One(ctx context.Context, _id *string) (*Integration, *Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "integrations", *_id)
+	u := fmt.Sprintf("%v/%v", "/integrations", *_id)
 
 	req, err := s.client.NewSvcRequest("GET", u, nil)
 	if err != nil {
