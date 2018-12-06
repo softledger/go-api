@@ -52,7 +52,7 @@ func (s *WalletService) All(ctx context.Context, qry *QueryParams) ([]*Wallet, i
 
 }
 
-func (s *WalletService) One(ctx context.Context, _id int64) (*Wallet, *Response, error) {
+func (s *WalletService) One(ctx context.Context, _id *string) (*Wallet, *Response, error) {
 
 	u := fmt.Sprintf("%v/%v", "wallets", _id)
 

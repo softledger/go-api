@@ -51,7 +51,7 @@ func (s *IntegrationService) All(ctx context.Context) ([]*Integration, *Response
 
 }
 
-func (s *IntegrationService) One(ctx context.Context, _id int64) (*Integration, *Response, error) {
+func (s *IntegrationService) One(ctx context.Context, _id *string) (*Integration, *Response, error) {
 
 	u := fmt.Sprintf("%v/%v", "integrations", _id)
 
