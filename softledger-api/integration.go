@@ -13,6 +13,7 @@ type Integration struct {
 	TenantId *string `json"tenantId,omitempty"`
 	Type     *string `json:"type,omitempty"`
 	Name     *string `json:"name,omitempty"`
+	Enabled  *bool   `json:"enabled,omitempty"`
 	Details  *Detail `json:"details,omitempty"`
 }
 
