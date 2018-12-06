@@ -54,7 +54,7 @@ func (s *WalletService) All(ctx context.Context, qry *QueryParams) ([]*Wallet, i
 
 func (s *WalletService) One(ctx context.Context, _id *string) (*Wallet, *Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "wallets", _id)
+	u := fmt.Sprintf("%v/%v", "wallets", *_id)
 
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
