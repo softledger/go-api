@@ -34,9 +34,7 @@ func (c Integration) String() string {
 
 func (s *IntegrationService) All(ctx context.Context) ([]*Integration, *Response, error) {
 
-	if err != nil {
-		return nil, nil, err
-	}
+	u := fmt.Sprintf("%v", "integrations")
 
 	req, err := s.client.NewSvcRequest("GET", u, nil)
 	if err != nil {
