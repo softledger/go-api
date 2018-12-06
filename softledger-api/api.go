@@ -40,6 +40,7 @@ type Client struct {
 	CryptoTransaction *CryptoTransactionService
 	Currency          *CurrencyService
 	Customer          *CustomerService
+	Integration       *IntegrationService
 	Invoice           *InvoiceService
 	Item              *ItemService
 	Job               *JobService
@@ -109,6 +110,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c.CryptoTransaction = (*CryptoTransactionService)(&c.common)
 	c.Currency = (*CurrencyService)(&c.common)
 	c.Customer = (*CustomerService)(&c.common)
+	c.Integration = (*IntegrationService)(&c.common)
 	c.Invoice = (*InvoiceService)(&c.common)
 	c.Item = (*ItemService)(&c.common)
 	c.Job = (*JobService)(&c.common)
