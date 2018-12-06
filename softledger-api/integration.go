@@ -9,11 +9,11 @@ type IntegrationService service
 
 type Integration struct {
 	//uniqueness is ID only, as we can have
-	ID       bson.ObjectId `json:"_id,omitempty"`
-	TenantId *string       `json"tenantId,omitempty"`
-	Type     *string       `json:"type,omitempty"`
-	Name     *string       `json:"name,omitempty"`
-	Details  *Detail       `json:"details,omitempty"`
+	ID       *string `json:"_id,omitempty"`
+	TenantId *string `json"tenantId,omitempty"`
+	Type     *string `json:"type,omitempty"`
+	Name     *string `json:"name,omitempty"`
+	Details  *Detail `json:"details,omitempty"`
 }
 
 type Detail struct {
