@@ -8,16 +8,16 @@ import (
 type LedgerAccountService service
 
 type LedgerAccount struct {
-	ID                      *int64  `json:"_id"`
-	Name                    *string `json:"name"`
-	NaturalBalance          *string `json:"naturalBalance"`
-	Description             *string `json:"description"`
-	Number                  *string `json:"number"`
-	Type                    *string `json:"type"`
-	Subtype                 *string `json:"subtype"`
-	IncludeLocationChildren *bool   `json:"includeLocationChildren"`
-	LocationId              *int64
-	Location                *Location
+	ID                      *int64    `json:"_id,omitempty"`
+	Name                    *string   `json:"name,omitempty"`
+	NaturalBalance          *string   `json:"naturalBalance,omitempty"`
+	Description             *string   `json:"description,omitempty"`
+	Number                  *string   `json:"number,omitempty"`
+	Type                    *string   `json:"type,omitempty"`
+	Subtype                 *string   `json:"subtype,omitempty"`
+	IncludeLocationChildren *bool     `json:"includeLocationChildren,omitempty"`
+	LocationId              *int64    `json:"LocationId,omitempty"`
+	Location                *Location `json:"Location,omitempty"`
 }
 
 type ledgerAccountResponse struct {
