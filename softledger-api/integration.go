@@ -34,21 +34,19 @@ func (c Integration) String() string {
 
 func (s *IntegrationService) All(ctx context.Context) ([]*Integration, *Response, error) {
 
-	u, err := addParams("integrations", qry)
-
 	if err != nil {
-		return nil, 0, nil, err
+		return nil, nil, err
 	}
 
 	req, err := s.client.NewSvcRequest("GET", u, nil)
 	if err != nil {
-		return nil, 0, nil, err
+		return nil, nil, err
 	}
 
 	var integrations []*Integration
 	resp, err := s.client.Do(ctx, req, &integrations)
 	if err != nil {
-		return nil, 0, resp, err
+		return nil, resp, err
 	}
 
 	return integrations, resp, nil
