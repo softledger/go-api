@@ -73,7 +73,7 @@ func (s *IntegrationService) One(ctx context.Context, _id *string) (*Integration
 
 func (s *IntegrationService) Create(ctx context.Context, payload *Integration) (*Integration, *Response, error) {
 
-	u := fmt.Sprintf("integrations")
+	u := fmt.Sprintf("/integrations")
 
 	req, err := s.client.NewSvcRequest("POST", u, payload)
 	if err != nil {
@@ -90,9 +90,9 @@ func (s *IntegrationService) Create(ctx context.Context, payload *Integration) (
 
 }
 
-func (s *IntegrationService) Update(ctx context.Context, _id int64, payload *Integration) (*Integration, *Response, error) {
+func (s *IntegrationService) Update(ctx context.Context, _id string, payload *Integration) (*Integration, *Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "integrations", _id)
+	u := fmt.Sprintf("%v/%v", "/integrations", _id)
 
 	req, err := s.client.NewSvcRequest("PUT", u, payload)
 	if err != nil {
@@ -111,7 +111,7 @@ func (s *IntegrationService) Update(ctx context.Context, _id int64, payload *Int
 
 func (s *IntegrationService) Delete(ctx context.Context, _id int64) (*Response, error) {
 
-	u := fmt.Sprintf("%v/%v", "integrations", _id)
+	u := fmt.Sprintf("%v/%v", "/integrations", _id)
 
 	req, err := s.client.NewSvcRequest("DELETE", u, nil)
 	if err != nil {
