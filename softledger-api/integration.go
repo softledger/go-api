@@ -10,7 +10,7 @@ type IntegrationService service
 type Integration struct {
 	//uniqueness is ID only, as we can have
 	ID       *string            `json:"_id,omitempty"`
-	TenantId *string            `json"tenantId,omitempty"`
+	TenantId *string            `json:"tenantId,omitempty"`
 	Type     *string            `json:"type,omitempty"`
 	Name     *string            `json:"name,omitempty"`
 	Enabled  *bool              `json:"enabled,omitempty"`
