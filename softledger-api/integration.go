@@ -9,13 +9,15 @@ type IntegrationService service
 
 type Integration struct {
 	//uniqueness is ID only, as we can have
-	ID       *string            `json:"_id,omitempty"`
-	TenantId *string            `json:"tenantId,omitempty"`
-	Type     *string            `json:"type,omitempty"`
-	Name     *string            `json:"name,omitempty"`
-	Enabled  *bool              `json:"enabled,omitempty"`
-	Details  *Detail            `json:"details,omitempty"`
-	MetaData *map[string]string `json:"metadata,omitempty"`
+	ID          *string            `json:"_id,omitempty"`
+	TenantId    *string            `json:"tenantId,omitempty"`
+	Type        *string            `json:"type,omitempty"`
+	Name        *string            `json:"name,omitempty"`
+	Enabled     *bool              `json:"enabled,omitempty"`
+	Status      *string            `json:"status,omitempty"`
+	LastRunTime *string            `json:"lastRunTime,omitempty"`
+	Details     *Detail            `json:"details,omitempty"`
+	MetaData    *map[string]string `json:"metadata,omitempty"`
 }
 
 type Detail struct {
