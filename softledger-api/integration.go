@@ -94,9 +94,6 @@ func (s *IntegrationService) Update(ctx context.Context, _id string, payload *In
 
 	u := fmt.Sprintf("%v/%v", "/integrations", _id)
 
-	fmt.Println(u)
-	fmt.Println(payload)
-
 	req, err := s.client.NewSvcRequest("PUT", u, payload)
 	if err != nil {
 		return nil, nil, err
