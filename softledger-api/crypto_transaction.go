@@ -119,9 +119,9 @@ func (s *CryptoTransactionService) One(ctx context.Context, _id int64) (*CryptoT
 
 func (s *CryptoTransactionService) Create(ctx context.Context, payload *CryptoTransaction) (*CryptoTransaction, *Response, error) {
 
-	u := fmt.Sprintf("/crypto/transactions")
+	u := fmt.Sprintf("/crypto")
 
-	req, err := s.client.NewRequest("POST", u, payload)
+	req, err := s.client.NewSvcRequest("POST", u, payload)
 	if err != nil {
 		return nil, nil, err
 	}
