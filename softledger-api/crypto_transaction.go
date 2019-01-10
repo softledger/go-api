@@ -18,6 +18,7 @@ type CryptoTransaction struct {
 	ExternalId     *string    `json:"externalId,omitempty"`
 	ExternalSource *string    `json:"externalSource,omitempty"`
 	TxHash         *string    `json:"txHash,omitempty"`
+	Reference      *string    `json:"reference,omitempty"`
 
 	RQty *string `json:"rQty,omitempty"`
 	SQty *string `json:"sQty,omitempty"`
