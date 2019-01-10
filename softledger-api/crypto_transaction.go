@@ -47,6 +47,7 @@ type CryptoTransaction struct {
 
 	LedgerAccountId *int64  `json:"LedgerAccountId,omitempty"`
 	CustomerId      *int64  `json:"CustomerId,omitempty"`
+	VendorId        *int64  `json:"VendorId,omitempty"`
 	JournalId       *string `json:"JournalId,omitempty"`
 
 	//not settable in create/update
