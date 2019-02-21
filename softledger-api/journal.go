@@ -15,6 +15,7 @@ type Journal struct {
 	EntryType    *string `json:"entryType,omitempty"`
 	SourceLedger *string `json:"sourceLedger,omitempty"`
 	Reference    *string `json:"reference,omitempty"`
+	Currency     *string `json:"currency,omitempty"`
 	Transactions []*Transaction
 }
 
