@@ -157,7 +157,7 @@ func (s *CryptoTransactionService) Update(ctx context.Context, _id int64, payloa
 }
 
 func (s *CryptoTransactionService) CostBasis(ctx context.Context, from time.Time) (*Response, error) {
-	u := fmt.Sprintf("/crypto/cost_basis")
+	u := fmt.Sprintf("/crypto/transactions/cost_basis")
 
 	type tmp struct {
 		From time.Time `json:"date,omitempty"`
