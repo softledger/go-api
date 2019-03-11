@@ -123,7 +123,7 @@ func (s *CryptoTransactionService) Create(ctx context.Context, payload *CryptoTr
 
 	u := fmt.Sprintf("/crypto")
 
-	req, err := s.client.NewRequest("POST", u, payload)
+	req, err := s.client.NewSvcRequest("POST", u, payload)
 	if err != nil {
 		return nil, nil, err
 	}
