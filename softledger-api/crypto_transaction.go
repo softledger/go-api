@@ -123,7 +123,7 @@ func (s *CryptoTransactionService) Create(ctx context.Context, payload *CryptoTr
 
 	u := fmt.Sprintf("/crypto")
 
-	req, err := s.client.NewSvcRequest("POST", u, payload)
+	req, err := s.client.NewRequest("POST", u, payload)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -135,7 +135,6 @@ func (s *CryptoTransactionService) Create(ctx context.Context, payload *CryptoTr
 	}
 
 	return cc, resp, nil
-
 }
 
 func (s *CryptoTransactionService) Update(ctx context.Context, _id int64, payload *CryptoTransaction) (*CryptoTransaction, *Response, error) {
@@ -155,6 +154,21 @@ func (s *CryptoTransactionService) Update(ctx context.Context, _id int64, payloa
 
 	return cc, resp, nil
 
+}
+
+func (s *CryptoTransactionService) CostBasis(ctx context.Context, from time.Time) (*Response, error) {
+	u := fmt.Sprintf("/crypto/cost_basis")
+
+	type tmp struct {
+		From time.Time `json:"date,omitempty"`
+	}
+
+	req, err := s.client.NewRequest("POST", u, from)
+	if err != nil {
+		return nil, err
+	}
+
+	return s.client.Do(ctx, req, nil)
 }
 
 func (s *CryptoTransactionService) Delete(ctx context.Context, _id int64) (*Response, error) {

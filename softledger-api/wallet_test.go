@@ -49,7 +49,7 @@ func TestWalletService_one(t *testing.T) {
 		fmt.Fprint(w, `{"_id":"1","name":"one"}`)
 	})
 
-	cc, _, err := client.Wallet.One(context.Background(), 1)
+	cc, _, err := client.Wallet.One(context.Background(), String("1"))
 	if err != nil {
 		t.Errorf("Wallet.One returned error: %v", err)
 	}

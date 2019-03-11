@@ -86,7 +86,7 @@ func TestAddParams(t *testing.T) {
 func TestNewRequest(t *testing.T) {
 	c := NewClient(nil)
 
-	inURL, outURL := "/api/foo", defaultBaseURL+"api/foo"
+	inURL, outURL := "/foo", defaultBaseURL+"api/foo"
 	var id int64
 	id = 1234
 	inBody, outBody := &CostCenter{ID: &id}, `{"_id":1234,"id":null,"name":null,"description":null}`+"\n"

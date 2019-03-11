@@ -32,8 +32,8 @@ func TestCryptoTransactionService_all(t *testing.T) {
 
 	want := []*CryptoTransaction{{
 		ID:     Int64(1),
-		RQty:   Float64(1),
-		RPrice: Float64(10),
+		RQty:   String("1"),
+		RPrice: String("10"),
 	}}
 	if !reflect.DeepEqual(ccs, want) {
 		t.Errorf("CryptoTransaction.All returned %+v, want %+v", ccs, want)
@@ -58,8 +58,8 @@ func TestCryptoTransactionService_one(t *testing.T) {
 
 	want := &CryptoTransaction{
 		ID:     Int64(1),
-		RQty:   Float64(1),
-		RPrice: Float64(10),
+		RQty:   String("1"),
+		RPrice: String("10"),
 	}
 	if !reflect.DeepEqual(cc, want) {
 		t.Errorf("CryptoTransaction.One returned %+v, want %+v", cc, want)
@@ -79,8 +79,8 @@ func TestCryptoTransactionService_create(t *testing.T) {
 
 	payload := &CryptoTransaction{
 		ID:     Int64(1),
-		RQty:   Float64(1),
-		RPrice: Float64(10),
+		RQty:   String("1"),
+		RPrice: String("10"),
 	}
 
 	cc, _, err := client.CryptoTransaction.Create(context.Background(), payload)
@@ -90,8 +90,8 @@ func TestCryptoTransactionService_create(t *testing.T) {
 
 	want := &CryptoTransaction{
 		ID:     Int64(1),
-		RQty:   Float64(1),
-		RPrice: Float64(10),
+		RQty:   String("1"),
+		RPrice: String("10"),
 	}
 	if !reflect.DeepEqual(cc, want) {
 		t.Errorf("CryptoTransaction.Create returned %+v, want %+v", cc, want)
@@ -109,7 +109,7 @@ func TestCryptoTransactionService_update(t *testing.T) {
 	})
 
 	payload := &CryptoTransaction{
-		RQty: Float64(1),
+		RQty: String("1"),
 	}
 
 	cc, _, err := client.CryptoTransaction.Update(context.Background(), 1, payload)
@@ -119,8 +119,8 @@ func TestCryptoTransactionService_update(t *testing.T) {
 
 	want := &CryptoTransaction{
 		ID:     Int64(1),
-		RQty:   Float64(1),
-		RPrice: Float64(10),
+		RQty:   String("1"),
+		RPrice: String("10"),
 	}
 	if !reflect.DeepEqual(cc, want) {
 		t.Errorf("CryptoTransaction.Update returned %+v, want %+v", cc, want)
