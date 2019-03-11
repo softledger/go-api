@@ -163,7 +163,11 @@ func (s *CryptoTransactionService) CostBasis(ctx context.Context, from time.Time
 		From time.Time `json:"date,omitempty"`
 	}
 
-	req, err := s.client.NewRequest("POST", u, from)
+	payload := &tmp{
+		From: from,
+	}
+
+	req, err := s.client.NewRequest("POST", u, payload)
 	if err != nil {
 		return nil, err
 	}
