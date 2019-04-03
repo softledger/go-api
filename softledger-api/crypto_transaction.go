@@ -46,10 +46,10 @@ type CryptoTransaction struct {
 	SCostLayers []*CryptoTransactionCostLayer `json:"sCostLayers,omitempty"`
 	FCostLayers []*CryptoTransactionCostLayer `json:"fCostLayers,omitempty"`
 
-	LedgerAccountId *int64  `json:"LedgerAccountId,omitempty"`
-	CustomerId      *int64  `json:"CustomerId,omitempty"`
-	VendorId        *int64  `json:"VendorId,omitempty"`
-	JournalId       *string `json:"JournalId,omitempty"`
+	LedgerAccountId *int64 `json:"LedgerAccountId,omitempty"`
+	CustomerId      *int64 `json:"CustomerId,omitempty"`
+	VendorId        *int64 `json:"VendorId,omitempty"`
+	JournalId       *int64 `json:"JournalId,omitempty"`
 
 	//not settable in create/update
 	Error        *CryptoTransactionError `json:"error,omitempty"`
