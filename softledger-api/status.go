@@ -14,15 +14,15 @@ type Status struct {
 }
 
 type StatusData struct {
-	ID        *string    `json:"_id"`
-	Err       *StatusErr `json:"err"`
-	Progress  *string    `json:"progress"`
-	Timestamp *string    `json:"timestamp"`
+	ID        *string    `json:"_id,omitempty"`
+	Err       *StatusErr `json:"err,omitempty"`
+	Progress  *string    `json:"progress,omitempty"`
+	Timestamp *string    `json:"timestamp,omitempty"`
 }
 
 type StatusErr struct {
-	Type *string `json:"type"`
-	Msg  *string `json:"msg"`
+	Type *string `json:"type,omitempty"`
+	Msg  *string `json:"msg,omitempty"`
 }
 
 func (cc Status) String() string {
