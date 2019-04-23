@@ -229,6 +229,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 		return nil, err
 	}
 	defer resp.Body.Close()
+	fmt.Println(resp.Body)
 
 	response := newResponse(resp)
 
