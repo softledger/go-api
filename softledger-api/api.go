@@ -229,7 +229,6 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 		return nil, err
 	}
 	defer resp.Body.Close()
-	fmt.Println(*resp.Body)
 
 	response := newResponse(resp)
 
@@ -285,11 +284,12 @@ func CheckResponse(r *http.Response) error {
 
 	errorResponse := &ErrorResponse{Response: r}
 	data, err := ioutil.ReadAll(r.Body)
-	fmt.Println(data)
 
 	if err == nil && data != nil {
 		json.Unmarshal(data, errorResponse)
 	}
+	fmt.Println(data)
+	fmt.Println(errorResponse)
 
 	return errorResponse
 }
